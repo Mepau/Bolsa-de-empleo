@@ -28,7 +28,7 @@ exports.register = function(req, res) {
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err,hash) => {
-            if (err) return res.send(500, {error: err});
+            if(err) throw err;
             newUser.password = hash;
             newUser.save().then(user =>
                 
@@ -37,7 +37,7 @@ exports.register = function(req, res) {
                     process.env.JWT_SECRET,
                     { expiresIn: 3600},
                     (err, token) => {
-                        if (err) return res.send(500, {error: err});
+                        if(err) throw err;
                         res.json({
                             token,
                             user: {
@@ -78,7 +78,7 @@ exports.login = function(req, res) {
             process.env.JWT_SECRET,
             { expiresIn: 3600},
             (err, token) => {
-                if (err) return res.send(500, {error: err});
+                if(err) throw err;
                 res.json({
                     token,
                     user: {

@@ -19,4 +19,9 @@ router.post("/", (req, res) => {
 
 
 
+router.post("/login/",(req,res)=>{
+    user_controller.login(req,res);
+});
+
+
 module.exports = router;

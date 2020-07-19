@@ -9,39 +9,31 @@ const router = express.Router();
 
 //Ruta GET Jobs
 //Retorna un JSON con todos los documentos Jobs
-router.get("/", jwtAuth, (req, res) => {
+router.get("/", (req, res) => {
     job_controller.findJobs(req, res);
 });
 
 //Ruta GET /jobs/:category
 //Retorna los Jobs con la misma categoria
-router.get("/category/:category", jwtAuth, (req, res) => {
+router.get("/category/:category", (req, res) => {
 
     job_controller.findCategoryJobs(req, res, req.params.category);
     
 });
 
-
-//Ruta GET /jobs/:id
-//Retorna el Job que coincida con el parametro id
-router.get("/:id", jwtAuth, (req, res) => {
-    job_controller.findIdJob(req, res, req.params.id);
-    
-});
-
-//Ruta GET /api/jobs/search/:param
-//Busca en diferentes campos en los difernetes documentos jobs y los retorna.
-//Los campos de busqueda son location, type y position
-router.get("/search/:key", jwtAuth, (req, res) => {
-    job_controller.searchJob(req,res,req.params.key);
-    
-})
-
 //Ruta GET jobs/logos/
 //Ruta servidora de imagenes y/o logos.
 router.get("/logos/:name", (req, res) => {
-
     res.sendFile(req.params.name, { root: "public/logos/" });
+});
+
+
+//Ruta GET /jobs/:id
+//Retorna el Job que coincida con el parametro id
+router.get("/:id", (req, res) => {
+
+    job_controller.findIdJob(req, res, req.params.id);
+    
 });
 
 //Ruta POST Jobs
@@ -63,6 +55,14 @@ router.put('/:id', [jwtAuth, adminAuth],  (req, res) => {
 
     job_controller.editJob(req, res, req.params.id);
 });
+
+//Ruta GET /api/jobs/search/:param
+//Busca en diferentes campos en los difernetes documentos jobs y los retorna.
+//Los campos de busqueda son location, type y position
+router.get("/search/:key", (req, res) => {
+    job_controller.searchJob(req,res,req.params.key);
+    
+})
 
 
 module.exports = router;

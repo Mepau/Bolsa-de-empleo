@@ -3,14 +3,16 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
-
 const jobs = require("./routes/api/jobs");
 const users = require("./routes/api/users");
 const categories = require("./routes/api/categories");
 const configs = require("./routes/api/configs");
 const auth = require("./routes/api/auth");
+const ngrok = require('ngrok');
 
 var compression = require("compression");
+var cors = require("cors");
+
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use(express.json());
 app.set(express.static("public"));
 
 app.use(compression());
+app.use(cors());
+
 
 //Live sign
 app.get("/", function (req, res) {
@@ -55,7 +59,16 @@ app.use("/api/categories", categories);
 app.use("/api/configs", configs);
 app.use("/api", auth);
 
-app.listen(`${stage.port}`, () => {
-  console.log(`Example app listening on port ${stage.port} !`);
+app.listen(5000, () => {
+  console.log(`Example app listening on port 5000!`);
+  (async function(){
+    const endpoingAccessibleOnTheInternet = await ngrok.connect(5000);
+    console.log(`Publically accessible tunnel to localhost${endpoingAccessibleOnTheInternet}`);
+  })
+ 
 });
+
+// app.listen(`${stage.port}`, () => {
+//   console.log(`Example app listening on port ${stage.port} !`);
+// });
 

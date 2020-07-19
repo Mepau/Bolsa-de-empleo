@@ -10,19 +10,14 @@ exports.findCategories = function(req, res) {
 
 exports.postCategory = function(req, res) {
 
-    const { tipo } = req.body;
-
-    if( !tipo) return res.send("Faltan datos");
-
     const newCategory = new Category({
-        tipo,
-        active: req.body.active
+        tipo: req.body.tipo
     });
     
     //Revisar para duplicados
     category.find({tipo: newCategory.tipo}, (err,docs) =>{
-        if (err) return res.send(500, {error: err});
-        
+        if(err) throw err;
+
         //De no encontrar duplicados proceder a guardar
         if(docs == 0) newCategory.save().then(category => res.json(category)).catch( err => res.send(err));
 
@@ -41,14 +36,12 @@ exports.deleteCategory = function(req, res, tipo) {
 
 
 exports.editCategory = function(req, res, tipo) {
-
  
     //Buscar al primer documento category que coincida con el campo tipo y actualizar
-    category.findOneAndUpdate({"tipo": tipo }, { tipo: req.body.tipo, active: req.body.active }, (err, doc) => {
+    category.findOneAndUpdate({"tipo": tipo }, { tipo: req.body.tipo }, (err, doc) => {
         if (err) return res.send(500, {error: err});
 
         doc.tipo = req.body.tipo;
-        doc.active = req.body.active;
         return res.send(doc);
         });
 };

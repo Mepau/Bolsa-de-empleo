@@ -12,6 +12,7 @@ exports.findJobs = function(req, res) {
         .then(jobs => res.json(jobs));
 };
 
+
 exports.findCategoryJobs = function(req, res, categ) {
 
     //Buscar todas las categorias disponibles
@@ -49,7 +50,7 @@ exports.postJobs= function(req, res) {
     //Peticiones a esta ruta deben estar encoded como multipart/form-data
     form.parse(req, (err, fields, files) => {
 
-        if (err) return res.send(500, {error: err});
+        if (err) return res.send(err);
 
         const {company, type, url, position, location, description, compemail} = fields;
 
@@ -106,6 +107,7 @@ exports.deleteJob = function(req, res, id) {
 };
 
 
+
 exports.editJob = function(req, res, id) {
  
     const form = formidable({ keepExtensions: true });
@@ -113,7 +115,7 @@ exports.editJob = function(req, res, id) {
     //Peticiones a esta ruta deben estar encoded como multipart/form-data
     form.parse(req, (err, fields, files) => {
 
-        if (err) return res.send(500, {error: err});
+        if (err)  return res.send(err);
 
         const {company, type, url, position, location, description, compemail} = fields;
 
@@ -137,7 +139,7 @@ exports.editJob = function(req, res, id) {
         
                 //Mover el archivo  al path public/logos
                 fs.rename(file.path, "public/logos/" + file.name, function (err) {
-                    if (err) return res.send(500, {error: err});
+                    if (err) res.send(err);
                     console.log('Imagen modificada con exito');
                 });
             }
@@ -173,6 +175,7 @@ exports.editJob = function(req, res, id) {
     });
     });
 };
+
 
 exports.searchJob = (req,res, param) => {
 

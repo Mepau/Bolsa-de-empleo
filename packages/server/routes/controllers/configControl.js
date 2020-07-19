@@ -10,10 +10,6 @@ exports.findConfigs = function(req, res) {
 
 exports.postConfig = function(req, res) {
 
-    const { amount } = req.body;
-
-    if( !amount ) return res.send("Faltan datos");
-
     //Guardar nuevo documento config
     const newConfig = new Config({
         amount: req.body.amount
@@ -29,6 +25,17 @@ exports.deleteConfig = function(req, res, id) {
         .catch(err => res.status(404).json("Config no Eliminado"))
 };
 
+
+// exports.editConfig = function(req, res, id) {
+ 
+//     //Buscar al primer documento category que coincida con el campo tipo y actualizar
+//     category.findOneAndUpdate({"id": id }, { amount: req.body.amount }, (err, doc) => {
+//         if (err) return res.send(500, {error: err});
+
+//         doc.amount = req.body.amount;
+//         return res.send(doc);
+//         });
+// };
 
 exports.editConfig = function(req, res, id) {
 
