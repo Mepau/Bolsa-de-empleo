@@ -1,13 +1,31 @@
 # Bolsa-de-empleo
 
-Work in progress.
+User Manual:
 
-Currently in development and testing.
+Primero, cree una copia del master branch.
 
-Back-end side of full proyect.
+*SETTINGS BACKEND
 
-Use <b>npm install</b> for dependencies
+1 - Ir al folder /packages/server y abrir terminal
+2 - Correr "npm i" (Sin las comillas)
+3 - Correr "npm run start"
 
-Use <b>npm run start</b> to run script for starting server.
+*SETTINGS FRONTEND
+
+1 - Ir al folder /packages/client y abrir terminal
+2 - Correr "npm i" (Sin las comillas)
+3 - Correr "ng serve"
+
+*TESTING
+
+-- En el navegador, ir a http://localhost:4200/ --
+
+1 - En en navbar, haga click en el apartado "Login" .
+2 - Para registrarse haga click en "Sign up" .
+
+**Notas : para publicar trabajo debe crear una cuenta de rol "Poster".
+
+
+
 
 
