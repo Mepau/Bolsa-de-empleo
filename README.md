@@ -7,14 +7,26 @@ Primero, cree una copia del master branch.
 ## SETTINGS BACKEND
 
 1 - Ir al folder /packages/server y abrir terminal.
+
+
 2 - Correr "npm i".
+
+
 3 - Correr "npm run start".
+
+
 
 ## SETTINGS FRONTEND
 
-1 - Ir al folder /packages/client y abrir terminal
+1 - Ir al folder /packages/client y abrir terminal.
+
+
 2 - Correr "npm i" .
+
+
 3 - Correr "ng serve" .
+
+
 
 ## TESTING
 
