@@ -32,7 +32,7 @@ Primero, cree una copia del master branch.
 
 -- En el navegador, ir a http://localhost:4200/ --
 
-1 - En eL navbar, haga click en el apartado "Sign up" .
+1 - En el navbar, haga click en el apartado "Sign up" .
 
 
 ## Notas : para publicar trabajo debe crear una cuenta de rol "Poster".
